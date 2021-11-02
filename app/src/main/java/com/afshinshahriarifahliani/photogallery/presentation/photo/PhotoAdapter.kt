@@ -11,7 +11,7 @@ import com.afshinshahriarifahliani.photogallery.databinding.ListItemBinding
 import com.bumptech.glide.Glide
 
 
-class PhotoAdapter() : RecyclerView.Adapter<MyViewHolder>() {
+class PhotoAdapter( var gridField:Int=0) : RecyclerView.Adapter<PhotoAdapter.MyViewHolder>() {
     private val photoList = ArrayList<PhotoItem>()
 
     fun setList(photoItems: List<PhotoItem>) {
@@ -37,22 +37,24 @@ class PhotoAdapter() : RecyclerView.Adapter<MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(photoList[position])
     }
-}
 
+   inner class MyViewHolder(val binding: ListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-class MyViewHolder(val binding: ListItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+        fun bind(photoItem: PhotoItem) {
+            binding.titleTextView.text = photoItem.author
+            if (gridField==0)
+            binding.descriptionTextView.text ="Size: ${photoItem.height} * ${photoItem.width}"
+            val posterURL = photoItem.downloadUrl
+            Glide.with(binding.imageView.context)
+                .load(posterURL)
+                .into(binding.imageView)
 
-    fun bind(photoItem: PhotoItem) {
-        binding.titleTextView.text = photoItem.author
-        binding.descriptionTextView.text ="Size: ${photoItem.height} * ${photoItem.width}"
-        val posterURL = photoItem.downloadUrl
-        Glide.with(binding.imageView.context)
-            .load(posterURL)
-            .into(binding.imageView)
+            binding.imageView.contentDescription=photoItem.downloadUrl.toString()
 
-        binding.imageView.contentDescription=photoItem.downloadUrl.toString()
+        }
 
     }
-
 }
+
+

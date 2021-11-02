@@ -6,8 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.ui.home.HomeFragment">
-        <GridView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photo_gridView"
+           android:numColumns="3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="1dp"
