@@ -1,4 +1,4 @@
-package com.afshinshahriarifahliani.photogallery.ui.dashboard
+package com.afshinshahriarifahliani.photogallery.presentation.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
