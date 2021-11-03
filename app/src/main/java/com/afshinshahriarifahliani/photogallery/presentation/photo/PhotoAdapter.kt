@@ -11,7 +11,7 @@ import com.afshinshahriarifahliani.photogallery.databinding.ListItemBinding
 import com.bumptech.glide.Glide
 
 
-class PhotoAdapter( var gridField:Int=0) : RecyclerView.Adapter<PhotoAdapter.MyViewHolder>() {
+class PhotoAdapter(var gridField: Int = 0) : RecyclerView.Adapter<PhotoAdapter.MyViewHolder>() {
     private val photoList = ArrayList<PhotoItem>()
 
     fun setList(photoItems: List<PhotoItem>) {
@@ -38,19 +38,22 @@ class PhotoAdapter( var gridField:Int=0) : RecyclerView.Adapter<PhotoAdapter.MyV
         holder.bind(photoList[position])
     }
 
-   inner class MyViewHolder(val binding: ListItemBinding) :
+    inner class MyViewHolder(val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(photoItem: PhotoItem) {
-            binding.titleTextView.text = photoItem.author
-            if (gridField==0)
-            binding.descriptionTextView.text ="Size: ${photoItem.height} * ${photoItem.width}"
+
+
+            if (gridField == 0) {
+                binding.descriptionTextView.text = "Size: ${photoItem.height} * ${photoItem.width}"
+                binding.titleTextView.text = photoItem.author
+            }
             val posterURL = photoItem.downloadUrl
             Glide.with(binding.imageView.context)
                 .load(posterURL)
                 .into(binding.imageView)
 
-            binding.imageView.contentDescription=photoItem.downloadUrl.toString()
+            binding.imageView.contentDescription = photoItem.downloadUrl
 
         }
 

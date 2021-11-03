@@ -14,15 +14,15 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(
+    fun providePhotoRepository(
         photoRemoteDatasource: PhotoRemoteDatasource,
-        movieLocalDataSource: PhotoLocalDataSource,
+        photoLocalDataSource: PhotoLocalDataSource,
         photoCacheDataSource: PhotoCacheDataSource
     ): PhotoRepository {
 
         return PhotoRepositoryImpl(
             photoRemoteDatasource,
-            movieLocalDataSource,
+            photoLocalDataSource,
             photoCacheDataSource
         )
 
